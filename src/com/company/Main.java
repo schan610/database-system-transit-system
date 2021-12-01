@@ -1,7 +1,11 @@
 package com.company;
 import java.sql.*;
 import java.util.Scanner;
-
+/*
+CS4350 Lab 4
+   - Program that designs and implements the Pomona Transit System using MySQL and JDBC.
+Author: Sabrina Chan
+ */
 public class Main {
 
     public static void main(String[] args) throws SQLException {
