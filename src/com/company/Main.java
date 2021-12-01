@@ -5,13 +5,14 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) throws SQLException {
-
+        // Connect to database
         Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/lab4",
                 "lab4", "lab4password");
+        // interface to represent sql
         Statement st = con.createStatement();
 
         String userInput = displayPrompt();
-
+        // Keep track of user input and exit when user input is "9"
         while (!userInput.equals("9")) {
             switch (userInput) {
                 case "1" -> {
@@ -55,6 +56,7 @@ public class Main {
         System.exit(0);
     }
 
+    // Method to display schedule of trips of given start location, destination, and date
     public static void one(Statement st) throws SQLException {
         Scanner input1 = new Scanner(System.in);
         Scanner input2 = new Scanner(System.in);
@@ -86,9 +88,11 @@ public class Main {
         }
     }
 
+    // Method to edit tables
     public static void two(Statement st) throws SQLException {
             String userInput = displayTwoPrompt();
             switch (userInput) {
+                // Delete a trip
                 case "A" -> {
                     Scanner input1 = new Scanner(System.in);
                     Scanner input2 = new Scanner(System.in);
@@ -108,6 +112,7 @@ public class Main {
 
                     System.out.println("Successfully deleted trip number: " + tripNo);
                 }
+                // Add a set if trip offerings
                 case "B" -> {
                     Scanner loop = new Scanner(System.in);
                     String addMore = "Y";
@@ -142,6 +147,7 @@ public class Main {
                         addMore = loop.nextLine();
                     }
                 }
+                // Change driver given trip offering
                 case "C" -> {
                     Scanner update = new Scanner(System.in);
                     Scanner input1 = new Scanner(System.in);
@@ -164,6 +170,7 @@ public class Main {
                     st.executeUpdate(sql);
                     System.out.println("Driver name changed to " + driver + " successfully.");
                 }
+                // Change bus for given trip offering
                 case "D" -> {
                     Scanner update = new Scanner(System.in);
                     Scanner input1 = new Scanner(System.in);
@@ -190,6 +197,7 @@ public class Main {
 
     }
 
+    // Method to display stops of given trip
     public static void three(Statement st) throws SQLException {
         Scanner input1 = new Scanner(System.in);
         System.out.println("Enter trip number: ");
@@ -212,6 +220,7 @@ public class Main {
         }
     }
 
+    // Method to display driver schedule given driver and date range
     public static void four(Statement st) throws SQLException {
         Scanner input1 = new Scanner(System.in);
         Scanner input2 = new Scanner(System.in);
@@ -249,6 +258,7 @@ public class Main {
 
     }
 
+    // Method to add a driver
     public static void five(Statement st) throws SQLException {
         Scanner update1 = new Scanner(System.in);
         Scanner update2 = new Scanner(System.in);
@@ -265,6 +275,7 @@ public class Main {
         System.out.println("Added driver " + driver + " successfully.");
     }
 
+    // Method to add a bus
     public static void six(Statement st) throws SQLException {
         Scanner update1 = new Scanner(System.in);
         Scanner update2 = new Scanner(System.in);
@@ -285,6 +296,7 @@ public class Main {
 
     }
 
+    // Method to delete a bus
     public static void seven(Statement st) throws SQLException {
         Scanner update = new Scanner(System.in);
 
@@ -297,6 +309,7 @@ public class Main {
         System.out.println("Successfully deleted bus ID: " + busID);
     }
 
+    // Method to insert actual time
     public static void eight(Statement st) throws SQLException {
         Scanner input1 = new Scanner(System.in);
         Scanner input2 = new Scanner(System.in);
@@ -335,6 +348,7 @@ public class Main {
         System.out.println("Successfully updated record.");
     }
 
+    // Method to display prompt and store user input
     public static String displayPrompt() {
         Scanner kb = new Scanner(System.in);
         System.out.println();
@@ -351,6 +365,7 @@ public class Main {
         return kb.nextLine();
     }
 
+    // Method to display the edit table prompt and store user input
     public static String displayTwoPrompt() {
         Scanner kb = new Scanner(System.in);
         System.out.println ("A. Delete a trip");
